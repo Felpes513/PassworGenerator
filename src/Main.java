@@ -13,12 +13,31 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Digite o tamanho da senha: ");
-        int tamanhoSenha = scanner.nextInt();
+        System.out.print("Digite o tipo de usario (gerente, funcionario, cliente): \n");
+        String tipoUsuario = scanner.nextLine();
 
+        int tamanhoSenha;
+
+        //Definir o tamanho da senha com base no tipo de usuário
+        switch (tipoUsuario){
+            case "gerente":
+                tamanhoSenha = 20;
+                break;
+            case "funcionario":
+                tamanhoSenha = 10;
+                break;
+            case "cliente":
+                tamanhoSenha = 5;
+                break;
+                default:
+                    System.out.println("Tipo de usuário invalido. Por favor, escolha entre uma das opções");
+                    scanner.close();
+                    return;
+        }
+        //Gerar e exibir  senha
         String senha = gerarSenha(tamanhoSenha);
-
-        System.out.println("Senha gerada: " + senha);
+        System.out.println("Senha: " + senha);
+        scanner.close();
     }
 
     public static String gerarSenha(int tamanho) {
