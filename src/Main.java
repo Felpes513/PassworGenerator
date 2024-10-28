@@ -1,4 +1,5 @@
 import java.security.SecureRandom;
+import java.util.Scanner;
 
 public class Main {
 
@@ -9,10 +10,14 @@ public class Main {
 
     private static final String TODOS_CARACTERES = CARACTERES_MAIUSCULAS + CARACTERES_MINUSCULAS + NUMEROS + CARACTERES_ESPECIAIS;
 
-    private static final int TAMANHO_SENHA = 12; // Altere para o tamanho desejado
-
     public static void main(String[] args) {
-        String senha = gerarSenha(TAMANHO_SENHA);
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o tamanho da senha: ");
+        int tamanhoSenha = scanner.nextInt();
+
+        String senha = gerarSenha(tamanhoSenha);
+
         System.out.println("Senha gerada: " + senha);
     }
 
@@ -24,7 +29,6 @@ public class Main {
             int indice = random.nextInt(TODOS_CARACTERES.length());
             senha.append(TODOS_CARACTERES.charAt(indice));
         }
-
         return senha.toString();
     }
 }
